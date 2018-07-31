@@ -1,0 +1,11 @@
+# AWS S3, database access info
+aws_sdk.php
+database.php
+
+# vendor
+vendor
+
+# sass mapping
+.sass-cache
+sass
+style.css.map

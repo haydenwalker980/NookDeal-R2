@@ -1,0 +1,90 @@
+@import 'var';
+
+.fixed-navbar-on {
+  display: none;
+}
+.banner-full {
+  height: calc(100vh - 125px);
+  background-image: url("../imgs/home_banner.jpg");
+  background-size: cover;
+  background-position: bottom left;
+  position: relative;
+  .banner-overlay {
+    z-index: -98;
+  }
+  .banner-text-box {
+    position: absolute;
+    top: 25%;
+    right: 10%;
+    padding: 10px;
+    text-shadow: 1px 1px 10px gray;
+    .banner-text-title {
+      font-family: $cursive;
+      font-size: 3rem;
+      transform: rotate(-5deg);
+      margin-bottom: 25px;
+      animation: fadeIn 1s .5s ease-in-out forwards;
+      opacity: 0;
+    }
+    .banner-text {
+      font-family: $round;
+      padding-left: 30px;
+      animation: fadeIn .75s 1.75s ease-in-out forwards;
+      opacity: 0;
+      span {
+        color: $red;
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+    }
+    .banner-btn {
+      cursor: pointer;
+      font-family: $lato;
+      color: $black;
+      border: 1px solid $black;
+      padding: 5px 10px;
+      animation: fadeIn .75s 1.75s ease-in-out forwards;
+      opacity: 0;
+      &:hover {
+        color: #98dafc;
+        background-color: $black;
+      }
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0;}
+    to { opacity: 1;}
+  }
+  // @keyframes flyIn {
+  //   from {transform: translateX(-100px); opacity: 0;}
+  //   to {transform: translateX(0); opacity: 1;}
+  // }
+}
+
+.product-item {
+  margin-bottom: 2.2rem;
+}
+
+
+
+// tablet view
+@media screen and (max-width: 768px) {
+  .banner-overlay {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255,255,255,0.4);
+    z-index: -2;
+  }
+}
+
+
+// mobile view
+@media screen and (max-width: 580px) {
+  .fixed-navbar-on {
+    display: block;
+  }
+  .banner-full {
+    height: calc(100vh - 75px);
+  }
+}

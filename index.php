@@ -1,8 +1,8 @@
 
 <?php include_once 'inc/database.php'; ?>
 <?php include_once 'inc/config.php'; ?>
-<?php include_once 'inc/header.php'; ?>
-<?php include_once 'inc/navbar.php'; ?>
+<?php include_once 'components/header.php'; ?>
+<?php include_once 'components/navbar.php'; ?>
 
 <div class="fixed-navbar-on" style="height: 75px;"></div>
 
@@ -38,4 +38,4 @@
       break;
   }
 ?>
-<?php include 'inc/footer.php'; ?>
+<?php include 'components/footer.php'; ?>

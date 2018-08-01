@@ -1,0 +1,48 @@
+@import 'var';
+
+.container-products {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.sidebar-filter {
+  width: 250px;
+  .h3 {
+    font-family: $round;
+  }
+  .card-header {
+    cursor: pointer;
+    &.collapsed::after {
+      font-family: "Font Awesome 5 Free";
+      content: "\f067";
+      float: right;
+      line-height: 1.5rem;
+      font-weight: 900;
+    }
+    &::after {
+      font-family: "Font Awesome 5 Free";
+      content: "\f068";
+      float: right;
+      line-height: 1.5rem;
+      font-weight: 900;
+    }
+  }
+  .size-btn-group {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    .col-4 {
+      border: 1px solid #dad9d0;
+      cursor: pointer;
+      transition: all 0.25s ease-in-out;
+      &.selected {
+        background-color: $light_gray;
+        color: white;
+        border-color: #eee;
+      }
+    }
+  }
+}
+
+// Price Slider
+#slider-range {
+  margin-bottom: 15px;
+}

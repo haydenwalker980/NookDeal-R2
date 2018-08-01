@@ -7,5 +7,4 @@ vendor
 
 # sass mapping
 .sass-cache
-sass
 style.css.map

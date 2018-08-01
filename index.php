@@ -1,6 +1,10 @@
 
-<?php include_once 'inc/database.php'; ?>
-<?php include_once 'inc/config.php'; ?>
+<!-- THIS IS WHERE EVERYTHING WILL BE LOADED UP TO -->
+
+<?php require_once 'inc/database.php'; // database connection ?>
+<?php require_once 'inc/functions.php'; // helper functions ?>
+<?php require_once 'inc/sql.php'; // SQL statements ?>
+<?php require_once 'inc/config.php'; // page navigation config ?>
 <?php include_once 'components/header.php'; ?>
 <?php include_once 'components/navbar.php'; ?>
 
@@ -8,6 +12,7 @@
 
 <?php
 // main page part
+// page navigation depends on ?page= GET value
   switch($page) {
     case "":
       include("pages/home.php");
@@ -34,8 +39,8 @@
       include("pages/help.php");
       break;
     default:
-      include("pages/home.php");
+      echo "PAGE DOES NOT EXIST!<br/> * Need Page Not found page";
       break;
   }
 ?>
-<?php include 'components/footer.php'; ?>
+<?php include_once 'components/footer.php'; ?>

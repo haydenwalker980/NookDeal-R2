@@ -1,12 +1,6 @@
 <?php
-  // load categories from database
-  $sql = "SELECT * FROM `categories` WHERE parent_id = 0";
-  $stmt = $pdo->prepare($sql);
-  $stmt->execute();
-  $parent_cat = $stmt->fetchAll();
-
+  $parent_cats = fetchParentCategories();
 ?>
-
 <!-- top navigation bar -->
 
 <nav>
@@ -32,25 +26,17 @@
         <ul class="product-dropdown">
           <div class="row no-gutters justify-content-center">
 
-          <?php
-            foreach($parent_cat as $parent) :
-            ?>
+          <?php foreach($parent_cats as $parent_cat) : ?>
 
             <div class="col-12 col-sm-3">
-              <li class="dropdown-title"><?= $parent['category'] ?></li>
+              <li class="dropdown-title"><?= $parent_cat['category'] ?></li>
 
-            <?php
-              $parent_id = $parent['id'];
-              $sql = "SELECT * FROM `categories` WHERE parent_id = :parent_id";
-              $stmt = $pdo->prepare($sql);
-              $stmt->execute([
-                "parent_id" => $parent_id,
-              ]);
-              $child_cat = $stmt->fetchAll();
-              foreach($child_cat as $child) :
-            ?>
+                <?php
+                  $child_cats = fetchChildCategories($parent_cat['category']);
+                  foreach($child_cats as $child_cat) :
+                ?>
 
-              <li class="dropdown-item"><a href="/products/<?= $parent['category'].'-'.$child['category']; ?>" class="dropdown-link <?php if($c == $parent['category'].'-'.$child['category']) {echo 'active';} ?>"><?= $child['category']; ?></a></li>
+              <li class="dropdown-item"><a href="/products/<?= $parent_cat['category'].'-'.$child_cat['category']; ?>" class="dropdown-link <?php if($c == $parent_cat['category'].'-'.$child_cat['category']) {echo 'active';} ?>"><?= $child_cat['category']; ?></a></li>
 
             <?php endforeach; ?>
 

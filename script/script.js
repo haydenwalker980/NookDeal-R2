@@ -1,5 +1,8 @@
 $(document).ready(function(){
+
+// =============================================================================
 // Some global variables such as deviceWidth, scrollPosition, etc.
+// =============================================================================
   var deviceWidth = $(window).width() + 15;
   var scrollPosition = $(window).scrollTop();
   // For development purpose
@@ -12,20 +15,26 @@ $(document).ready(function(){
     // console.log(scrollPosition);
   })
 
-// Navbar behaviors ****************************************
+// =============================================================================
+// NAVBAR BEHAVIORS
+// =============================================================================
   // Products menu dropdown
-    $(".product-dropdown-button").click(function(e) {
-      e.preventDefault();
-      $('.product-dropdown-button').toggleClass('active');
-      $('.product-dropdown').stop(true,true).slideToggle(300);
-    });
+  $(".product-dropdown-button").click(function(e) {
+    e.preventDefault();
+    $('.product-dropdown-button').toggleClass('active');
+    $('.product-dropdown').stop(true,true).slideToggle(300);
+  });
+  $('main, .upper-nav, footer').click(function() {
+    $('.product-dropdown-button').removeClass('active');
+    $('.product-dropdown').stop(true,true).slideUp(200);
+  });
 
-// Mobile Collapse Menu button
-    $(".collapse-btn").click(function(){
-      $(this).toggleClass("expand");
-      $(".lower-nav").stop(true,true).slideToggle(300);
-      $("body").toggleClass("no-scroll");
-    });
+  // Mobile Collapse Menu button
+  $(".collapse-btn").click(function(){
+    $(this).toggleClass("expand");
+    $(".lower-nav").stop(true,true).slideToggle(300);
+    $("body").toggleClass("no-scroll");
+  });
 
   // Lower navbar fixed on scroll down
   // works only for desktop and tablet view
@@ -44,7 +53,9 @@ $(document).ready(function(){
 
 
 
-// Home page ******************************************|
+// =============================================================================
+// HOME PAGE
+// =============================================================================
 
   // banner btn slide down to featured
   $('.banner-btn').click(function(e) {
@@ -57,40 +68,12 @@ $(document).ready(function(){
 
 });
 
-// Products **************************************************/
-var minPrice;
-var maxPrice;
-$( "#slider-range" ).slider({
-      range: true,
-      min: 0,
-      max: 1000,
-      values: [ 75, 300 ],
-      slide: function( event, ui ) {
-        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-        minPrice = ui.values[0];
-        maxPrice = ui.values[1];
-        // console.log(minPrice+" - "+maxPrice);
-      }
-    });
-    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-      " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-minPrice = $('#slider-range').slider("values", 0);
-maxPrice = $('#slider-range').slider("values", 1);
-// console.log(minPrice+" - "+maxPrice);
-
-// size btns
-$('.size-btn-group>.col-4').on('click', function() {
-  var selectedSize = $(this).data("select");
-  $(this).toggleClass("selected");
-  $('#size>input[value='+selectedSize+']').trigger('click');
-});
-
-// filter and sort
-$('.filter-form input').on('change', function() {
-  $('.filter-form').append("<input type='number' name='minPrice' value='"+ minPrice +"' hidden/><input type='number' name='maxPrice' value='"+ maxPrice +"' hidden/>");
-  $('.filter-form').submit();
-});
-$('#slider-range').on('slidestop', function() {
-  $('.filter-form').append("<input type='number' name='minPrice' value='"+ minPrice +"' hidden/><input type='number' name='maxPrice' value='"+ maxPrice +"' hidden/>");
-  $('.filter-form').submit();
-});
+// =============================================================================
+// PRODUCTS PAGE
+// =============================================================================
+  // size btns
+  $('.size-btn-group>.col-4').on('click', function() {
+    var selectedSize = $(this).data("select");
+    $(this).toggleClass("selected");
+    $('#size>input[value='+selectedSize+']').trigger('click');
+  });

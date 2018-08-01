@@ -1,27 +1,3 @@
-<!-- dynamic meta tags and stylesheets go here -->
-<?php
-//dynamic meta tags
-$meta = [
-  "title" => "My eCommerce Website",
-];
-
-// initialize different meta for products category and product id
-switch($page) {
-  case "products":
-    $category = ucwords(str_replace('-', ' ', $c));
-    $meta = [
-      "title" => $category . " | My eCommerce Website",
-    ];
-    break;
-  case "product":
-    $meta = [
-      "title" => $pid . " | My eCommerce Website",
-    ];
-    break;
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>

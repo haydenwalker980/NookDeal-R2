@@ -1,38 +1,4 @@
-<?php
-
-  if(isset($_GET['sort'])) {
-    $sort = mysqli_real_escape_string($db, $_GET['sort']);
-    $size = array();
-    if($_GET['XS']) {
-      array_push($size, 'XS');
-    }
-    if($_GET['S']) {
-      array_push($size, 'S');
-    }
-    if($_GET['M']) {
-      array_push($size, 'M');
-    }
-    if($_GET['L']) {
-      array_push($size, 'L');
-    }
-    if($_GET['XL']) {
-      array_push($size, 'XL');
-    }
-    if($_GET['XXL']) {
-      array_push($size, 'XXL');
-    }
-    $minPrice = (int)mysqli_real_escape_string($db, $_GET['minPrice'] );
-    $maxPrice = (int)mysqli_real_escape_string($db, $_GET['maxPrice'] );
-  } else {
-    $sort = 'newest';
-    $minPrice = 75;
-    $maxPrice = 300;
-    $size = array('XS', 'S', 'M', 'L', 'XL', 'XXL');
-  }
-
-?>
-
-<form class="filter-form" method="get">
+<form class="filter-form" method="GET">
   <div class="accordion">
     <div class="card">
       <div class="card-header collapsed" data-toggle="collapse" data-target="#sort-by">
@@ -40,11 +6,11 @@
       </div>
     </div>
     <div class="collapse" id="sort-by">
-      <input type="radio" name="sort" id="low_to_high" value="low_to_high" <?php if($sort=='low_to_high'){echo 'checked';} ?>>
+      <input type="radio" name="sort" id="low_to_high" value="low_to_high">
       <label for="low_to_high">Price: Low To High</label><br/>
-      <input type="radio" name="sort" id="high_to_low" value="high_to_low" <?php if($sort=='high_to_low'){echo 'checked';} ?>>
+      <input type="radio" name="sort" id="high_to_low" value="high_to_low">
       <label for="high_to_low">Price: High To Low</label><br/>
-      <input type="radio" name="sort" id="newest" value="newest" <?php if($sort=='newest'){echo 'checked';} ?>>
+      <input type="radio" name="sort" id="newest" value="newest" checked>
       <label for="newest">Newest</label>
     </div>
 
@@ -54,12 +20,16 @@
       </div>
     </div>
     <div class="collapse" id="price-range">
-      <p>
-        <label for="amount">Price range:</label>
-        <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-      </p>
-
-      <div id="slider-range"></div>
+      <label for="minPrice">Minimum Price:</label>
+      <div class="input-group">
+        <i class="fas fa-dollar-sign"></i>
+        <input type="number" id="minPrice" name="minPrice" class="form-control" step="1" min="0">
+      </div>
+      <label for="maxPrice">Maximum Price:</label>
+      <div class="input-group mb-3">
+        <i class="fas fa-dollar-sign"></i>
+        <input type="number" id="maxPrice" name="maxPrice" class="form-control" step="1" min="0">
+      </div>
     </div>
 
     <div class="card">

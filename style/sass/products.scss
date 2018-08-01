@@ -38,7 +38,16 @@
   }
 }
 
-// Price Slider
-#slider-range {
-  margin-bottom: 15px;
+.input-group {
+  position: relative;
+  i {
+    z-index: 999;
+    position: absolute;
+    display: block;
+    top: 10px;
+    left: 10px;
+  }
+  input {
+    padding-left: 30px;
+  }
 }

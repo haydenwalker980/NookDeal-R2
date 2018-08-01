@@ -5,7 +5,7 @@ $(document).ready(function(){
   // For development purpose
   $(window).on('resize', function() {
     deviceWidth = $(window).width() + 15;
-    // console.log(deviceWidth);
+    console.log(deviceWidth);
   })
   $(window).on('scroll', function() {
     scrollPosition = $(window).scrollTop();
@@ -29,7 +29,7 @@ $(document).ready(function(){
 
   // Lower navbar fixed on scroll down
   // works only for desktop and tablet view
-  if(deviceWidth >= 480) {
+  if(deviceWidth >= 580) {
     $(window).scroll(function() {
       scrollPosition = $(window).scrollTop();
       if(scrollPosition >= 80) {
@@ -82,7 +82,15 @@ maxPrice = $('#slider-range').slider("values", 1);
 $('.size-btn-group>.col-4').on('click', function() {
   var selectedSize = $(this).data("select");
   $(this).toggleClass("selected");
-  $('#size>input[value='+selectedSize+']').prop("checked")?
-  $('#size>input[value='+selectedSize+']').prop("checked", false) :
-  $('#size>input[value='+selectedSize+']').prop("checked", true);
+  $('#size>input[value='+selectedSize+']').trigger('click');
+});
+
+// filter and sort
+$('.filter-form input').on('change', function() {
+  $('.filter-form').append("<input type='number' name='minPrice' value='"+ minPrice +"' hidden/><input type='number' name='maxPrice' value='"+ maxPrice +"' hidden/>");
+  $('.filter-form').submit();
+});
+$('#slider-range').on('slidestop', function() {
+  $('.filter-form').append("<input type='number' name='minPrice' value='"+ minPrice +"' hidden/><input type='number' name='maxPrice' value='"+ maxPrice +"' hidden/>");
+  $('.filter-form').submit();
 });

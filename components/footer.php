@@ -1,7 +1,7 @@
 
     <!-- footer -->
     <footer>
-      &copy; <span class="copyright">2018 Billy Minhyeong Joe</span>
+      <div class="copyright">&copy; 2018 Billy Minhyeong Joe</div>
     </footer>
 
 

@@ -1,7 +1,10 @@
 <?php
   // load categories from database
-  $pcat_query =  "SELECT * FROM categories WHERE parent_id = 0";
-  $pcat_result = mysqli_query($db, $pcat_query);
+  $sql = "SELECT * FROM `categories` WHERE parent_id = 0";
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute();
+  $parent_cat = $stmt->fetchAll();
+
 ?>
 
 <!-- top navigation bar -->
@@ -29,25 +32,31 @@
         <ul class="product-dropdown">
           <div class="row no-gutters justify-content-center">
 
-          <?php while($pcat_row = mysqli_fetch_assoc($pcat_result)) : ?>
-
-            <div class="col-12 col-sm-3">
-              <li class="dropdown-title"><?= $pcat_row['category'] ?></li>
-
-            <?php
-              $parent_id = $pcat_row['id'];
-              $scat_query = "SELECT * FROM categories WHERE parent_id = $parent_id";
-              $scat_result = mysqli_query($db, $scat_query);
-              while ($scat_row = mysqli_fetch_assoc($scat_result)) :
+          <?php
+            foreach($parent_cat as $parent) :
             ?>
 
-              <li class="dropdown-item"><a href="/products/<?= $pcat_row['category'].'-'.$scat_row['category']; ?>" class="dropdown-link <?php if($c == $pcat_row['category'].'-'.$scat_row['category']) {echo 'active';} ?>"><?= $scat_row['category']; ?></a></li>
+            <div class="col-12 col-sm-3">
+              <li class="dropdown-title"><?= $parent['category'] ?></li>
 
-            <?php endwhile; ?>
+            <?php
+              $parent_id = $parent['id'];
+              $sql = "SELECT * FROM `categories` WHERE parent_id = :parent_id";
+              $stmt = $pdo->prepare($sql);
+              $stmt->execute([
+                "parent_id" => $parent_id,
+              ]);
+              $child_cat = $stmt->fetchAll();
+              foreach($child_cat as $child) :
+            ?>
+
+              <li class="dropdown-item"><a href="/products/<?= $parent['category'].'-'.$child['category']; ?>" class="dropdown-link <?php if($c == $parent['category'].'-'.$child['category']) {echo 'active';} ?>"><?= $child['category']; ?></a></li>
+
+            <?php endforeach; ?>
 
             </div>
 
-          <?php endwhile; ?>
+          <?php endforeach; ?>
 
           </div>
         </ul>

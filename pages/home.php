@@ -1,6 +1,8 @@
 <?php
-  $featured_query = "SELECT * FROM products WHERE `featured` = 1";
-  $featured_result = mysqli_query($db, $featured_query);
+  $sql = 'SELECT * FROM `products` WHERE featured = 1';
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute();
+  $featured = $stmt->fetchAll();
 ?>
 
 
@@ -23,35 +25,41 @@
       <div class="col-md-9">
         <div class="row product-list">
 
-          <?php while($featured_row = mysqli_fetch_assoc($featured_result)) : ?>
+          <?php foreach($featured as $featured) : ?>
 
             <?php
               // get category name from products' category_id
-              $category_id = $featured_row['category_id'];
-              $scat_query = "SELECT * FROM `categories` WHERE id = $category_id";
-              $scat_result = mysqli_query($db, $scat_query);
-              $scat_row = mysqli_fetch_assoc($scat_result);
-              $category_name = ucwords($scat_row['category']);
+              $cat_id = $featured['category_id'];
+              $sql = "SELECT * FROM `categories` WHERE id = :cat_id";
+              $stmt = $pdo->prepare($sql);
+              $stmt->execute([
+                "cat_id" => $cat_id,
+              ]);
+              $child_cat = $stmt->fetch();
+              $cat_name = ucwords($child_cat['category']);
               // get category's parent category name
-              if ($scat_row['parent_id'] != 0) {
-                $parent_id = $scat_row['parent_id'];
-                $pcat_query = "SELECT * FROM `categories` WHERE id = $parent_id";
-                $pcat_result = mysqli_query($db, $pcat_query);
-                $pcat_row = mysqli_fetch_assoc($pcat_result);
-                $category_name = ucwords($pcat_row['category'])."-".ucwords($scat_row['category']);
+              if ($child_cat['parent_id'] != 0) {
+                $parent_id = $child_cat['parent_id'];
+                $sql = "SELECT * FROM `categories` WHERE id = :parent_id";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([
+                  "parent_id" => $parent_id,
+                ]);
+                $parent_cat = $stmt->fetch();
+                $cat_name = ucwords($parent_cat['category'])."-".ucwords($child_cat['category']);
               }
             ?>
 
           <div class="col-sm-3 text-center product-item">
-            <p class="h5"><?= $featured_row['name']; ?></p>
-            <p class="text-muted"><?= $category_name ?></p>
-            <img class="img-fluid" src="/imgs/products/<?= $featured_row['image']; ?>" alt="<?= $featured_row['image']; ?>">
-            <p class="price text-danger">List Price: <s>$<?= $featured_row['list_price']; ?></s></p>
-            <p class="price">Our Price: $<?= $featured_row['our_price']; ?></p>
-            <a href="/product/<?= $featured_row['id']; ?>" class="btn btn-sm btn-success">Details</a>
+            <p class="h5"><?= $featured['name']; ?></p>
+            <p class="text-muted"><?= $cat_name ?></p>
+            <img class="img-fluid" src="/imgs/products/<?= $featured['image']; ?>" alt="<?= $featured['image']; ?>">
+            <p class="price text-danger">List Price: <s>$<?= $featured['list_price']; ?></s></p>
+            <p class="price">Our Price: $<?= $featured['our_price']; ?></p>
+            <a href="/product/<?= $featured['id']; ?>" class="btn btn-sm btn-success">Details</a>
           </div>
 
-          <?php endwhile; ?>
+          <?php endforeach; ?>
 
         </div>
       </div>

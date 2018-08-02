@@ -1,10 +1,27 @@
 @import 'var';
 
 .container-singleProduct {
-  padding: 30px 0;
-  .row {
+  padding: 30px 0 0;
+  .product-details {
     width: 960px;
     margin: auto;
     max-width: 95%;
+  }
+}
+.product-review {
+  background-color: $white_gray * 1.1;
+  padding: 30px 0;
+  margin-left: 0;
+  margin-right: 0;
+  .btn-write-review {
+    background-color: $white-gray * 1.1;
+    font-family: $round;
+    border: 1px solid $black;
+    padding: 0.8rem 2.5rem;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      background-color: $black;
+      color: $white-gray * 1.1;
+    }
   }
 }

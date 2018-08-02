@@ -8,7 +8,7 @@ $(document).ready(function(){
   // For development purpose
   $(window).on('resize', function() {
     deviceWidth = $(window).width() + 15;
-    console.log(deviceWidth);
+    // console.log(deviceWidth);
   })
   $(window).on('scroll', function() {
     scrollPosition = $(window).scrollTop();
@@ -38,18 +38,33 @@ $(document).ready(function(){
 
   // Lower navbar fixed on scroll down
   // works only for desktop and tablet view
-  if(deviceWidth >= 580) {
-    $(window).scroll(function() {
-      scrollPosition = $(window).scrollTop();
-      if(scrollPosition >= 80) {
-        // change lower navbar to fixed
-        $('.lower-nav').addClass("fixed");
-      } else {
-        // change lower navbar to normal
-        $('.lower-nav').removeClass("fixed");
-      }
-    })
+  // if(deviceWidth >= 580) {
+  //   $(window).scroll(function() {
+  //     scrollPosition = $(window).scrollTop();
+  //     if(scrollPosition >= 80) {
+  //       // change lower navbar to fixed
+  //       $('.lower-nav').addClass("fixed");
+  //     } else {
+  //       // change lower navbar to normal
+  //       $('.lower-nav').removeClass("fixed");
+  //     }
+  //   })
+  // }
+  function lowerNavFixed() {
+    if(deviceWidth >= 580 && scrollPosition >= 80) {
+      $('.lower-nav').addClass("fixed");
+    } else {
+      $('.lower-nav').removeClass("fixed");
+    }
   }
+  lowerNavFixed();
+
+  // $(window).resize(function() {
+  //   lowerNavFixed();
+  // });
+  $(window).scroll(function() {
+    lowerNavFixed();
+  });
 
 
 

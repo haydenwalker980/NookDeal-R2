@@ -1,10 +1,13 @@
 @import 'var';
 
 .sidebar-filter {
-  width: 250px;
+  min-width: 250px !important;
   .h3 {
     font-family: $round;
   }
+}
+
+.filter-form {
   .card-header {
     cursor: pointer;
     &.collapsed::after {

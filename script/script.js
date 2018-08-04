@@ -92,3 +92,59 @@ $(document).ready(function(){
     $(this).toggleClass("selected");
     $('#size>input[value='+selectedSize+']').trigger('click');
   });
+
+
+// =============================================================================
+// Product Review
+// =============================================================================
+// Star rating dynamic
+$('#add-review-modal').on('hidden.bs.modal', function() {
+  $('.star-rating i').removeClass("fas").addClass("far").removeClass('hold');
+  $('#overall-rating').html("");
+  $('#rating-hidden').val(0);
+});
+
+$('.star-rating i').on("click", function() {
+  var starClicked = $(this).index() + 1;
+  console.log(starClicked);
+
+  $('.star-rating i').removeClass('fas').addClass('far').removeClass('hold');
+  for (var i = 1; i <= starClicked; i++) {
+    $('.star-rating i:nth-child(' + i + ')').removeClass('far').addClass('fas').addClass('hold');
+  }
+  $("#rating-hidden").val(starClicked);
+});
+
+$('.star-rating i').on("mouseenter", function() {
+  var starOn = $('.star-rating .fas').length;
+  var starPos = $(this).index() + 1;
+  var overallRating = $('.star-rating i:nth-child('+starPos+')').data("rating");
+  if (starOn < starPos) {
+    $('#overall-rating').html(overallRating);
+    for (var i = 1; i <= starPos; i++) {
+      $('.star-rating i:nth-child(' + i + ')').removeClass('far').addClass('fas');
+    }
+  } else {
+    if(!$('.star-rating i:nth-child('+(starPos+1)+')').is('.hold')) {
+      $('#overall-rating').html(overallRating);
+      $('.star-rating i:nth-child('+(starPos+1)+')').removeClass('fas').addClass('far');
+    }
+  }
+});
+
+$('.star-rating').on("mouseleave", function() {
+  if($('.star-rating i').is('.hold')) {
+    var holdPos = $('#rating-hidden').val();
+    // console.log(holdPos);
+    var overallRating = $('.star-rating i:nth-child('+holdPos+')').data("rating");
+    $('#overall-rating').html(overallRating);
+    for (var i = 5; i > holdPos; i--) {
+      $('.star-rating .fas:nth-child(' + i + ')').removeClass('fas').addClass('far');
+    }
+  } else {
+    $('#overall-rating').html("");
+    for (var i = 1; i <= 5; i++) {
+      $('.star-rating .fas:nth-child(' + i + ')').removeClass('fas').addClass('far');
+    }
+  }
+});

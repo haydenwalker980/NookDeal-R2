@@ -68,4 +68,9 @@
     </div>
 
   </div>
+  <div class="text-center pt-3">
+    <button type="submit" name="refine-search" class="btn btn-info" value="true">
+      Refine Search
+    </button>
+  </div>
 </form>

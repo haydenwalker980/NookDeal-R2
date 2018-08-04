@@ -25,3 +25,26 @@
     }
   }
 }
+#add-review-modal {
+  .modal-content {
+    background-color: #fff;
+  }
+  .modal-header {
+    background-color: rgba(0,0,0,0.85);
+    color: $white_gray;
+    .close {
+      color: inherit;
+    }
+  }
+  .modal-body {
+    .star-rating {
+      font-size: 1.8rem;
+      i {
+        cursor: pointer;
+      }
+    }
+  }
+  .modal-footer {
+    justify-content: center;
+  }
+}

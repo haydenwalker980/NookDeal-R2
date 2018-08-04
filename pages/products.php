@@ -6,11 +6,11 @@
 <!-- main page part -->
 <main>
   <div class="container-fluid container-products">
-    <div class="row no-gutters">
-      <aside class="sidebar-filter d-none d-md-block">
+    <div class="row no-gutters justify-content-center">
+      <aside class="sidebar-filter col-8 col-sm-2">
         <p class="h3 mt-3"><?= $category; ?></p>
         <hr>
-        <?php include('components\filterForm.php'); ?>
+        <?php include('./components/filterForm.php'); ?>
       </aside>
 
       <div class="col-12 col-sm item-list mt-5">
@@ -97,5 +97,6 @@
       </div>
     </div>
   </div>
+
 
 </main>

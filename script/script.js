@@ -106,7 +106,8 @@ $('#add-review-modal').on('hidden.bs.modal', function() {
 
 $('.star-rating i').on("click", function() {
   var starClicked = $(this).index() + 1;
-  console.log(starClicked);
+  var overallRating = $('.star-rating i:nth-child('+starClicked+')').data("rating");
+  $('#overall-rating').html(overallRating);
 
   $('.star-rating i').removeClass('fas').addClass('far').removeClass('hold');
   for (var i = 1; i <= starClicked; i++) {

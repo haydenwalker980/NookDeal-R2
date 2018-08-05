@@ -1,6 +1,14 @@
 <?php
+  define("ITEMS_PER_PAGE", 8);
   $category = explode("-", $c);
-  $category = ucwords($category[0])." - ".ucwords($category[1]);
+  $full_category = ucwords($category[0])." - ".ucwords($category[1]);
+  // $category[0] = parent category
+  // $category[1] = child category
+
+  // pagination
+  $row_num = totalProducts($category[0], $category[1]);
+  $page_num = ceil($row_num/ITEMS_PER_PAGE);
+  $first_of_page = ITEMS_PER_PAGE*($p-1);
 ?>
 
 <!-- main page part -->
@@ -8,95 +16,21 @@
   <div class="container-fluid container-products">
     <div class="row no-gutters justify-content-center">
       <aside class="sidebar-filter col-8 col-sm-2">
-        <p class="h3 mt-3"><?= $category; ?></p>
+        <p class="h3 mt-3"><?= $full_category; ?></p>
         <hr>
-        <?php include('./components/filterForm.php'); ?>
+        <?php include_once('./components/filterForm.php'); ?>
       </aside>
 
       <div class="col-12 col-sm item-list mt-5">
         <div class="row justify-content-start">
 
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center product-item">
-            <p class="h5">Men's Polo Shirts</p>
-            <img class="img-fluid" src="/imgs/products/polo_shirts.jpg" alt="polo_shirts.jpg">
-            <p class="price">$20.99</p>
-            <a href="/product/1" class="btn btn-sm btn-success">Details</a>
-          </div>
-
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center product-item">
-            <p class="h5">Men's Polo Shirts</p>
-            <img class="img-fluid" src="/imgs/products/polo_shirts.jpg" alt="polo_shirts.jpg">
-            <p class="price">$20.99</p>
-            <a href="/product/1" class="btn btn-sm btn-success">Details</a>
-          </div>
-
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center product-item">
-            <p class="h5">Men's Polo Shirts</p>
-            <img class="img-fluid" src="/imgs/products/polo_shirts.jpg" alt="polo_shirts.jpg">
-            <p class="price">$20.99</p>
-            <a href="/product/1" class="btn btn-sm btn-success">Details</a>
-          </div>
-
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center product-item">
-            <p class="h5">Men's Polo Shirts</p>
-            <img class="img-fluid" src="/imgs/products/polo_shirts.jpg" alt="polo_shirts.jpg">
-            <p class="price">$20.99</p>
-            <a href="/product/1" class="btn btn-sm btn-success">Details</a>
-          </div>
-
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center product-item">
-            <p class="h5">Men's Polo Shirts</p>
-            <img class="img-fluid" src="/imgs/products/polo_shirts.jpg" alt="polo_shirts.jpg">
-            <p class="price">$20.99</p>
-            <a href="/product/1" class="btn btn-sm btn-success">Details</a>
-          </div>
-
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center product-item">
-            <p class="h5">Men's Polo Shirts</p>
-            <img class="img-fluid" src="/imgs/products/polo_shirts.jpg" alt="polo_shirts.jpg">
-            <p class="price">$20.99</p>
-            <a href="/product/1" class="btn btn-sm btn-success">Details</a>
-          </div>
-
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center product-item">
-            <p class="h5">Men's Polo Shirts</p>
-            <img class="img-fluid" src="/imgs/products/polo_shirts.jpg" alt="polo_shirts.jpg">
-            <p class="price">$20.99</p>
-            <a href="/product/1" class="btn btn-sm btn-success">Details</a>
-          </div>
-
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center product-item">
-            <p class="h5">Men's Polo Shirts</p>
-            <img class="img-fluid" src="/imgs/products/polo_shirts.jpg" alt="polo_shirts.jpg">
-            <p class="price">$20.99</p>
-            <a href="/product/1" class="btn btn-sm btn-success">Details</a>
-          </div>
-
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center product-item">
-            <p class="h5">Men's Polo Shirts</p>
-            <img class="img-fluid" src="/imgs/products/polo_shirts.jpg" alt="polo_shirts.jpg">
-            <p class="price">$20.99</p>
-            <a href="/product/1" class="btn btn-sm btn-success">Details</a>
-          </div>
-
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center product-item">
-            <p class="h5">Men's Polo Shirts</p>
-            <img class="img-fluid" src="/imgs/products/polo_shirts.jpg" alt="polo_shirts.jpg">
-            <p class="price">$20.99</p>
-            <a href="/product/1" class="btn btn-sm btn-success">Details</a>
-          </div>
-
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center product-item">
-            <p class="h5">Men's Polo Shirts</p>
-            <img class="img-fluid" src="/imgs/products/polo_shirts.jpg" alt="polo_shirts.jpg">
-            <p class="price">$20.99</p>
-            <a href="/product/1" class="btn btn-sm btn-success">Details</a>
-          </div>
+        <?php include_once('components/productCard.php'); ?>
 
         </div>
+        <?php include_once('components/pagination.php'); ?>
       </div>
     </div>
-  </div>
+
 
 
 </main>

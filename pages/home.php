@@ -28,7 +28,7 @@
             <p class="h5"><?= ucwords($product['name']); ?></p>
             <p class="text-muted mb-0"><?= ucwords($product['parent_cat']); ?></p>
             <p class="text-muted"><?= ucwords($product['category']); ?></p>
-            <img class="img-fluid" src="/imgs/products/<?= $product['image']; ?>" alt="<?= $product['image']; ?>">
+            <img class="img-fluid" src="<?= $s3_path.'/products/'.$product['image']; ?>" alt="<?= $product['image']; ?>">
             <p class="price text-danger">List Price: <s>$<?= $product['list_price']; ?></s></p>
             <p class="price">Our Price: $<?= $product['our_price']; ?></p>
             <a href="/product/<?= $product['id']; ?>" class="btn btn-sm btn-success">Details</a>

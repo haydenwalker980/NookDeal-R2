@@ -54,3 +54,15 @@
     padding-left: 30px;
   }
 }
+
+.container-products {
+  min-height: calc(100vh - 159px);
+  &>.row {
+    min-height: calc(100vh - 159px);
+  }
+  .item-list {
+    .row:first-child {
+      min-height: 90%;
+    }
+  }
+}

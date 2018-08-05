@@ -30,3 +30,12 @@ a {
     text-decoration: none;
   }
 }
+
+main {
+  min-height: calc(100vh - 209px);
+}
+@media screen and (max-width: 580px) {
+  main {
+    min-height: calc(100vh - 159px);
+  }
+}

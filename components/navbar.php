@@ -10,7 +10,7 @@
       <span class="hamburger"></span>
       <span class="hamburger"></span>
     </div>
-    <a href="/"><img class="navbar-logo img-fluid" src="/imgs/logo.png" alt="logo.png"></a>
+    <a href="/"><img class="navbar-logo img-fluid" src="/img/logo.png" alt="logo.png"></a>
     <div class="help-account-cart">
       <a href="/account"><i class="fas fa-user-circle account-icon <?php if($page == 'account') {echo 'active';} ?>"></i></a>
       <a href="/cart"><i class="fas fa-shopping-cart cart-icon <?php if($page == 'cart') {echo 'active';} ?>"></i></a>
@@ -18,7 +18,7 @@
     </div>
   </div>
   <div class="lower-nav">
-    <a href="/"><img class="navbar-logo img-fluid" src="/imgs/logo.png" alt="logo.png"></a>
+    <a href="/"><img class="navbar-logo img-fluid" src="/img/logo.png" alt="logo.png"></a>
     <ul class="navbar">
       <li class="navbar-item"><a href="/" class="navbar-link <?php if($page=='') {echo 'active';} ?>">HOME</a></li>
 

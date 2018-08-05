@@ -1,6 +1,4 @@
 
-<!-- THIS IS WHERE EVERYTHING WILL BE LOADED UP TO -->
-
 <?php require_once 'inc/database.php'; // database connection ?>
 <?php require_once 'inc/functions.php'; // helper functions ?>
 <?php require_once 'inc/sql.php'; // SQL statements ?>

@@ -7,6 +7,7 @@
 <?php include_once 'components/navbar.php'; ?>
 
 <div class="fixed-navbar-on" style="height: 75px;"></div>
+<div class="fixed-lower-nav" style="height: 50px;"></div>
 
 <?php
 // main page part

@@ -51,10 +51,12 @@ $(document).ready(function(){
   //   })
   // }
   function lowerNavFixed() {
-    if(deviceWidth >= 580 && scrollPosition >= 80) {
+    if(deviceWidth >= 580 && scrollPosition > 75) {
       $('.lower-nav').addClass("fixed");
+      $('.fixed-lower-nav').show();
     } else {
       $('.lower-nav').removeClass("fixed");
+      $('.fixed-lower-nav').hide();
     }
   }
   lowerNavFixed();
